@@ -1,0 +1,23 @@
+
+name: Stage 8 - Action Execution Control
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  action-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout pinned Action
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Confirm checkout
+        run: |
+          test -f .github/workflows/stage8-action-execution.yml
+          echo "Stage 8 checkout completed"
